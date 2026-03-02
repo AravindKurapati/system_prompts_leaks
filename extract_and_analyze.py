@@ -259,4 +259,4 @@ def run_pipeline(score_injection=False):
 
 if __name__ == "__main__":
     import sys
-    run_pipeline("--score-injection" in sys.argv)
+    run_pipeline(score_injection=True)

@@ -1,4 +1,4 @@
-name: Update Timeline Weekly
+name: Update Timeline Daily
 
 on:
   schedule:
@@ -19,11 +19,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install google-generativeai python-dotenv
+        run: pip install groq python-dotenv
 
       - name: Run pipeline
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python extract_and_analyze.py
 
       - name: Commit results
