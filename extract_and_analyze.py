@@ -67,7 +67,6 @@ def get_all_versions(filepaths):
                 })
 
         for line in result.stdout.strip().split("\n"):
-            print(f"  RAW LINE: {repr(line)}")  # ADD THIS
             parts = line.split("|", 2)
     seen = set()
     unique = []
