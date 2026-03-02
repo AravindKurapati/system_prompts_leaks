@@ -237,6 +237,8 @@ def run_pipeline(score_injection=False):
             if timeline:
                 timeline[-1]["injection_score"] = score
 
+        all_timelines[model_name] = timeline
+
     sync_events = find_synchronized_events(all_timelines)
     print(f"\n {len(sync_events)} synchronized events found")
 
