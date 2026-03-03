@@ -2,7 +2,7 @@
 
 > This project aims to track what actually changed when ChatGPT started acting different? Or when Claude suddenly got more cautious about something?
 
-**[→ Live Dashboard](https://AravindKurapati.github.io/system_prompts_leaks)**
+**[Live Dashboard](https://AravindKurapati.github.io/system_prompts_leaks)**
 
 ---
 
@@ -15,7 +15,7 @@ This project:
 -  Diffs every version to find what actually changed
 -  Uses Groq's Llama 3.3 70B to write journalist-style summaries of each change
 -  Scores each model's prompt injection resistance daily against 10 adversarial attacks
--  Visualizes everything on a live dashboard — update frequency heatmap, model comparison, top terms added/removed
+-  Visualizes everything on a live dashboard. It updates frequency heatmap, model comparison, top terms added/removed
 -  Detects "synchronized events" where multiple companies update around the same time (which is... interesting)
 -  Runs automatically every day via GitHub Actions
 
@@ -25,24 +25,24 @@ This project:
 
 Here's what you get when you open it:
 
-**Stats bar** — how many models tracked, total changes caught, sync events, last run date
+**Stats bar**: how many models tracked, total changes caught, sync events, last run date
 
 **Analytics section:**
-- *Changes Per Model* — bar chart showing which AI updates its prompt most often
-- *Update Frequency Heatmap* — a calendar-style grid showing when each model changed month by month
-- *Top Terms* — the most common words being added vs removed across all prompts (reveals what topics are heating up)
+- *Changes Per Model* - bar chart showing which AI updates its prompt most often
+- *Update Frequency Heatmap* - a calendar-style grid showing when each model changed month by month
+- *Top Terms* - the most common words being added vs removed across all prompts (reveals what topics are heating up)
 
-**Synchronized Updates** — flagged events where 2+ companies changed their prompts within 7 days of each other
+**Synchronized Updates** - flagged events where 2+ companies changed their prompts within 7 days of each other
 
-**Per-model timeline** — click any model tab to see its full change history with AI-generated summaries, expandable diffs, and injection resistance scores
+**Per-model timeline** - click any model tab to see its full change history with AI-generated summaries, expandable diffs, and injection resistance scores
 
 ---
 
 ## Prompt Injection Resistance Scoring
 
-Every day, the pipeline stress-tests each model's current system prompt against 10 classic adversarial attacks — techniques people use to try to make AI ignore its instructions or leak hidden information. Each model gets a score (0–100%) shown as a progress bar on the dashboard.
+Every day, the pipeline stress-tests each model's current system prompt against 10 classic adversarial attacks. These are techniques people use to try to make AI ignore its instructions or leak hidden information. Each model gets a score (0–100%) shown as a progress bar on the dashboard.
 
-The point isn't just "is this model safe" — it's tracking whether scores go **up or down** after a prompt update. If a model scores 90% one week and 60% the next, something in that update made it more vulnerable. That's worth knowing.
+The point isn't just "is this model safe". It's tracking whether scores go **up or down** after a prompt update. If a model scores 90% one week and 60% the next, something in that update made it more vulnerable.
 
 **The 10 attack vectors tested daily:**
 
@@ -81,7 +81,7 @@ enriched_timeline.json saved + committed
 GitHub Pages serves index.html + JSON as live site
 ```
 
-The repo itself is the database — git history is the raw data source.
+The repo itself is the database. Git history is the raw data source.
 
 ---
 
@@ -113,9 +113,9 @@ Then open `index.html` in a browser (use Live Server in VS Code for best results
 
 A GitHub Actions workflow runs the pipeline every day at 9am UTC, commits the updated `enriched_timeline.json`, and GitHub Pages automatically serves the new data. To set it up on your fork:
 
-1. Add `GROQ_API_KEY` as a repo secret (Settings → Secrets → Actions)
-2. Enable GitHub Pages (Settings → Pages → main branch → / root)
-3. That's it — it runs itself
+1. Add `GROQ_API_KEY` as a repo secret (Settings -> Secrets -> Actions)
+2. Enable GitHub Pages (Settings -> Pages -> main branch -> / root)
+3. That's it!! it runs itself
 
 ---
 
@@ -133,7 +133,7 @@ A GitHub Actions workflow runs the pipeline every day at 9am UTC, commits the up
 
 ## Credits
 
-System prompt files originally collected by [@asgeirtj](https://github.com/asgeirtj/system_prompts_leaks) — this repo is a fork with the analytics pipeline, injection scorer and dashboard built on top.
+System prompt files originally collected by [@asgeirtj](https://github.com/asgeirtj/system_prompts_leaks). This repo is a fork with the analytics pipeline, injection scorer and dashboard built on top.
 
 ---
 
