@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-04T09:36:45.289486",
+  "generated_at": "2026-03-05T09:39:54.930372",
   "models": [
     "claude",
     "openai",
@@ -26,7 +26,7 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "This change updates the system to recognize when \"Claude\" is mentioned at the start of a line, in addition to \"User\" and \"Action\". This means that lines starting with \"Claude:\" will now be treated similarly to lines starting with \"User:\" or \"Action:\".",
+        "summary": "The change adds \"Claude\" to the list of keywords that the system checks for in user responses. This means that if a response starts with \"Claude:\", it will be treated the same as responses starting with \"User:\" or \"Action:\". This update helps the system better understand and format responses from Claude.",
         "injection_score": null
       },
       {
@@ -103,7 +103,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change is a redesign of CLAUDE's system prompt, giving it a fresh new look that matches Anthropic's style. The update tweaks things like font sizes, colors, and spacing to make the interface more visually appealing and user-friendly. Overall, it's a cosmetic update that aims to improve the overall look and feel of the system.",
+        "summary": "This change is a redesign of CLAUDE's interface, making it look more like Anthropic's style. The update includes new formatting and styling for things like table of contents, preference cards, and example groups, giving the system a fresh new look.",
         "injection_score": null
       },
       {
@@ -120,7 +120,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "This change adds a small icon (called a favicon) to the website's tab in your browser, making it easier to identify CLAUDE's System Prompt Explorer. The icon is stored in a file called \"favicon.ico\" and is now linked to the webpage. This is a cosmetic update that doesn't change how the system works, just how it looks.",
+        "summary": "This change adds a tiny icon (called a favicon) to the CLAUDE system prompt explorer. It's a small image that shows up in the browser's tab, making it easier to identify the page. The addition is just a line of code that links to the icon file, \"favicon.ico\".",
         "injection_score": 0
       }
     ],
@@ -142,7 +142,7 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "Someone updated the system prompt for GEMINI, changing the example user's name from \u00c1sgeir Thor Johnson to GOOGLE_ACCOUNT_NAME, and their email from asgeirtj@gmail.com to HANDLE@gmail.com. This change likely aims to make the example more generic and flexible.",
+        "summary": "The system prompt for GEMINI was updated to replace a specific user's name and email with a more generic version. Now, instead of using a real-sounding name and email, it uses \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\", which are likely placeholders. This change makes the prompt more flexible and less tied to a specific individual.",
         "injection_score": 0
       }
     ],
@@ -197,8 +197,8 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "GROK's system got an update to how it searches the web and does keyword searches. The change mostly seems to be about reorganizing the code, but it didn't add or remove any major features. It still lets you search the web and do advanced keyword searches with lots of options, like filtering by location or time.",
-        "injection_score": 10
+        "summary": "GROK's system got an update that changed how it searches the web and looks for specific keywords. The update didn't add any new features, but it did reorganize how the search functions are defined behind the scenes. This change is mostly internal and won't affect how you use the search features.",
+        "injection_score": 0
       }
     ]
   },
