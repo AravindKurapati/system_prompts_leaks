@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-05T09:39:54.930372",
+  "generated_at": "2026-03-06T09:34:50.663870",
   "models": [
     "claude",
     "openai",
@@ -26,7 +26,7 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "The change adds \"Claude\" to the list of keywords that the system checks for in user responses. This means that if a response starts with \"Claude:\", it will be treated the same as responses starting with \"User:\" or \"Action:\". This update helps the system better understand and format responses from Claude.",
+        "summary": "This change updated the system to recognize lines starting with \"Claude:\" in addition to \"User:\" and \"Action:\". The update allows the system to capture and format Claude's lines in response cards, making it more effective at handling conversations.",
         "injection_score": null
       },
       {
@@ -103,7 +103,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change is a redesign of CLAUDE's interface, making it look more like Anthropic's style. The update includes new formatting and styling for things like table of contents, preference cards, and example groups, giving the system a fresh new look.",
+        "summary": "This change updates the design of CLAUDE's system prompt to match Anthropic's style, making it look more modern and consistent. The update includes new layouts and colors for things like tables of contents, preference cards, and example groups. Overall, it's a visual refresh to make the system more visually appealing and user-friendly.",
         "injection_score": null
       },
       {
@@ -120,7 +120,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "This change adds a tiny icon (called a favicon) to the CLAUDE system prompt explorer. It's a small image that shows up in the browser's tab, making it easier to identify the page. The addition is just a line of code that links to the icon file, \"favicon.ico\".",
+        "summary": "This change adds a small icon, called a favicon, to the browser tab for CLAUDE's System Prompt Explorer. The icon is stored in a file called \"favicon.ico\" and will show up next to the page title in the browser tab. It's a minor update that improves the overall look of the page.",
         "injection_score": 0
       }
     ],
@@ -142,8 +142,8 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "The system prompt for GEMINI was updated to replace a specific user's name and email with a more generic version. Now, instead of using a real-sounding name and email, it uses \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\", which are likely placeholders. This change makes the prompt more flexible and less tied to a specific individual.",
-        "injection_score": 0
+        "summary": "Someone updated the system prompt to change the user's name and email address. The old name \"\u00c1sgeir Thor Johnson\" and email \"asgeirtj@gmail.com\" were swapped out for a more generic \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\". This likely makes the system more flexible and able to work with different users.",
+        "injection_score": 10
       }
     ],
     "grok": [
@@ -197,7 +197,7 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "GROK's system got an update that changed how it searches the web and looks for specific keywords. The update didn't add any new features, but it did reorganize how the search functions are defined behind the scenes. This change is mostly internal and won't affect how you use the search features.",
+        "summary": "GROK's system prompt had an update to its web search and X keyword search features. The update doesn't seem to have changed much, but it did reorganize the way the features are defined, likely to make them work better or be easier to maintain. Overall, the search features still work the same way, allowing you to look up stuff on the web or search for specific posts on X.",
         "injection_score": 0
       }
     ]
@@ -206,8 +206,8 @@
     {
       "date": "2026-02-15",
       "models_involved": [
-        "grok",
-        "claude"
+        "claude",
+        "grok"
       ],
       "model_count": 2,
       "description": "2 models updated within 7 days"
