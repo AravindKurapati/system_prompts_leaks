@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T09:34:50.663870",
+  "generated_at": "2026-03-07T09:26:37.846609",
   "models": [
     "claude",
     "openai",
@@ -26,7 +26,7 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "This change updated the system to recognize lines starting with \"Claude:\" in addition to \"User:\" and \"Action:\". The update allows the system to capture and format Claude's lines in response cards, making it more effective at handling conversations.",
+        "summary": "This change adds \"Claude\" as a valid prefix to identify user or action lines in the system. In other words, the system can now recognize lines that start with \"Claude:\" in addition to \"User:\" and \"Action:\". This update makes the system more flexible and able to handle different types of input.",
         "injection_score": null
       },
       {
@@ -103,7 +103,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change updates the design of CLAUDE's system prompt to match Anthropic's style, making it look more modern and consistent. The update includes new layouts and colors for things like tables of contents, preference cards, and example groups. Overall, it's a visual refresh to make the system more visually appealing and user-friendly.",
+        "summary": "This change updated the styling of CLAUDE's system prompt to match the Anthropic docs aesthetic, making it look more modern and consistent. The update included changes to fonts, colors, and spacing to improve the overall user experience.",
         "injection_score": null
       },
       {
@@ -120,7 +120,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "This change adds a small icon, called a favicon, to the browser tab for CLAUDE's System Prompt Explorer. The icon is stored in a file called \"favicon.ico\" and will show up next to the page title in the browser tab. It's a minor update that improves the overall look of the page.",
+        "summary": "This change adds a small icon, called a favicon, to the CLAUDE system prompt explorer. It's like a tiny logo that shows up in the browser's tab, making it easier to identify the page. The favicon is stored in a file called \"favicon.ico\" and is now linked to the system prompt explorer.",
         "injection_score": 0
       }
     ],
@@ -142,8 +142,8 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "Someone updated the system prompt to change the user's name and email address. The old name \"\u00c1sgeir Thor Johnson\" and email \"asgeirtj@gmail.com\" were swapped out for a more generic \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\". This likely makes the system more flexible and able to work with different users.",
-        "injection_score": 10
+        "summary": "This change updated the user's info in GEMINI's system, replacing the old name \"\u00c1sgeir Thor Johnson\" with a generic placeholder \"GOOGLE_ACCOUNT_NAME\", and the email address was also changed to a more general format \"HANDLE@gmail.com\". This likely aims to make the system more flexible and adaptable to different users.",
+        "injection_score": 0
       }
     ],
     "grok": [
@@ -197,8 +197,8 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "GROK's system prompt had an update to its web search and X keyword search features. The update doesn't seem to have changed much, but it did reorganize the way the features are defined, likely to make them work better or be easier to maintain. Overall, the search features still work the same way, allowing you to look up stuff on the web or search for specific posts on X.",
-        "injection_score": 0
+        "summary": "This update changed how GROK's web search and X keyword search features work, specifically adjusting the parameters and requirements for these actions. The changes seem to focus on tweaking the details of how searches are performed and the information that's returned, rather than making any major overhauls. Overall, it's a refinement of the existing search functionality to make it more efficient and effective.",
+        "injection_score": 10
       }
     ]
   },
