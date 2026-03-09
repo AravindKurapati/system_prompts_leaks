@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T09:28:29.307532",
+  "generated_at": "2026-03-09T09:45:45.503863",
   "models": [
     "claude",
     "openai",
@@ -27,8 +27,8 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "This change updated the system to recognize lines starting with \"Claude:\" in addition to \"User:\" and \"Action:\". The update allows the system to better capture and format responses from Claude, making it more efficient and accurate.",
-        "injection_score": 55
+        "summary": "The change updates the system to recognize lines starting with \"Claude:\" in addition to \"User:\" and \"Action:\". This allows the system to correctly identify and format Claude's lines in the response cards.",
+        "injection_score": 59
       },
       {
         "date": "2026-02-15",
@@ -104,7 +104,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change updates the style of CLAUDE's system prompt to match Anthropic's documentation look. It adds new formatting for things like table of contents labels, preference cards, and removes some old styles for example groups and fields. Overall, it's a visual refresh to make the system prompt look more modern and consistent with Anthropic's brand.",
+        "summary": "This change updates the design of CLAUDE's system prompt to match Anthropic's style, making it look more modern and sleek. The update includes new formatting for tables of contents, preference cards, and other visual elements to improve the overall user experience.",
         "injection_score": null
       },
       {
@@ -121,7 +121,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "Someone made a small update to CLAUDE's system by adding a favicon, which is the little icon that shows up in your browser's tab. They added a line of code to link to this icon, called \"favicon.ico\". This change makes the browser tab look a bit nicer, but doesn't affect how CLAUDE works.",
+        "summary": "This change adds a small icon, called a favicon, to the browser tab for CLAUDE's System Prompt Explorer. It's a tiny image that shows up next to the page title, and it's been added using a line of code that links to an \"favicon.ico\" file. This gives the page a bit more visual personality and makes it easier to spot in your browser tabs.",
         "injection_score": null
       }
     ],
@@ -143,8 +143,8 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "Someone updated the system prompt for GEMINI to change the user's name and email address. The old name \"\u00c1sgeir Thor Johnson\" and email \"asgeirtj@gmail.com\" were replaced with a more generic \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\". This change likely makes the system more flexible and able to work with different users.",
-        "injection_score": 55
+        "summary": "Someone updated the system prompt to change the user's name and email address. The old name was \u00c1sgeir Thor Johnson, and the new name is now just a placeholder called GOOGLE_ACCOUNT_NAME. The email address was also changed to a generic HANDLE@gmail.com.",
+        "injection_score": 62
       }
     ],
     "grok": [
@@ -198,8 +198,8 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "GROK's system got an update that tweaked how it defines web searches and advanced searches on X Posts. The changes aren't super dramatic, but they do clarify how to use search operators and what parameters are available for each type of search. Overall, it's just a refinement to make the system work a bit more smoothly.",
-        "injection_score": 55
+        "summary": "GROK updated its system to change how it searches the web and looks for specific keywords. The update didn't really add or remove any major features, but it did tweak how these search tools are defined and work behind the scenes. Overall, it's a pretty minor change that shouldn't affect how you use GROK's search tools.",
+        "injection_score": 73
       }
     ],
     "perplexity": []
