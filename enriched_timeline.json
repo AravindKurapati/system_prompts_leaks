@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T09:45:45.503863",
+  "generated_at": "2026-03-10T09:40:48.127348",
   "models": [
     "claude",
     "openai",
@@ -27,8 +27,8 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "The change updates the system to recognize lines starting with \"Claude:\" in addition to \"User:\" and \"Action:\". This allows the system to correctly identify and format Claude's lines in the response cards.",
-        "injection_score": 59
+        "summary": "The change adds \"Claude\" to the list of keywords that the system checks for in user responses. This means that lines starting with \"Claude:\" will now be treated the same as those starting with \"User:\" or \"Action:\".",
+        "injection_score": 66
       },
       {
         "date": "2026-02-15",
@@ -104,7 +104,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change updates the design of CLAUDE's system prompt to match Anthropic's style, making it look more modern and sleek. The update includes new formatting for tables of contents, preference cards, and other visual elements to improve the overall user experience.",
+        "summary": "This change updates the styling of CLAUDE's system prompt, giving it a fresh new look with tweaks to font sizes, colors, and spacing. The redesign aims to match the Anthropic docs aesthetic, making the interface more visually appealing and consistent with other Anthropic documentation.",
         "injection_score": null
       },
       {
@@ -121,7 +121,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "This change adds a small icon, called a favicon, to the browser tab for CLAUDE's System Prompt Explorer. It's a tiny image that shows up next to the page title, and it's been added using a line of code that links to an \"favicon.ico\" file. This gives the page a bit more visual personality and makes it easier to spot in your browser tabs.",
+        "summary": "This change added a tiny icon, called a favicon, to the browser tab for CLAUDE's System Prompt Explorer. It's just a small visual tweak, but it helps identify the tab more easily. The favicon is a small image file called \"favicon.ico\" that's now linked to the explorer page.",
         "injection_score": null
       }
     ],
@@ -143,8 +143,8 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "Someone updated the system prompt to change the user's name and email address. The old name was \u00c1sgeir Thor Johnson, and the new name is now just a placeholder called GOOGLE_ACCOUNT_NAME. The email address was also changed to a generic HANDLE@gmail.com.",
-        "injection_score": 62
+        "summary": "This change updated the example user info in GEMINI's system prompt. The old name \"\u00c1sgeir Thor Johnson\" and email \"asgeirtj@gmail.com\" were replaced with a generic \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\", making it more flexible and anonymous. This allows the prompt to be more adaptable to different users.",
+        "injection_score": 55
       }
     ],
     "grok": [
@@ -198,8 +198,8 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "GROK updated its system to change how it searches the web and looks for specific keywords. The update didn't really add or remove any major features, but it did tweak how these search tools are defined and work behind the scenes. Overall, it's a pretty minor change that shouldn't affect how you use GROK's search tools.",
-        "injection_score": 73
+        "summary": "This change updates the definitions for two search tools, \"web_search\" and \"x_keyword_search\", to make them more consistent and clear. The main difference is that the \"web_search\" tool no longer requires you to specify the number of results you want, and the \"x_keyword_search\" tool now has a more detailed description of its advanced search features.",
+        "injection_score": 50
       }
     ],
     "perplexity": []
@@ -208,8 +208,8 @@
     {
       "date": "2026-02-15",
       "models_involved": [
-        "grok",
-        "claude"
+        "claude",
+        "grok"
       ],
       "model_count": 2,
       "description": "2 models updated within 7 days"
