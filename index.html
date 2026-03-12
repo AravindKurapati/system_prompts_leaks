@@ -336,44 +336,86 @@
     }
 
     /* ── TERMS ── */
-    .terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-
-    .terms-col h4 {
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      font-family: 'IBM Plex Mono', monospace;
+    /* ── ACTIVITY PROFILES ── */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
     }
 
-    .terms-col.added h4 { color: var(--green); }
-    .terms-col.removed h4 { color: var(--red); }
-
-    .term-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .term-name {
-      font-size: 12px;
-      min-width: 110px;
-      color: var(--text2);
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    .term-track {
-      flex: 1;
-      height: 4px;
+    .profile-card {
       background: var(--surface2);
-      border-radius: 2px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      position: relative;
       overflow: hidden;
     }
 
-    .term-fill { height: 100%; border-radius: 2px; }
-    .term-count { font-size: 11px; color: var(--muted); min-width: 22px; text-align: right; font-family: 'IBM Plex Mono', monospace; }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .profile-model {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .profile-model-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .profile-row-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .profile-row-value {
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+    }
+
+    .profile-bar-wrap {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 3px;
+      margin-bottom: 8px;
+    }
+
+    .profile-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .profile-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-top: 4px;
+    }
 
     /* ── TABS ── */
     .tabs {
@@ -655,7 +697,7 @@
   <div class="logo">
     <div class="logo-text">
       <h1>AI Prompt Watch</h1>
-      <p>System prompt evolution tracker - Claude · ChatGPT · Gemini · Grok · Perplexity</p>
+      <p>System prompt evolution tracker — Claude · ChatGPT · Gemini · Grok</p>
     </div>
   </div>
   <div class="header-right">
@@ -678,8 +720,8 @@
       <div class="value" id="statChanges">—</div>
     </div>
     <div class="stat-card">
-      <div class="label">Sync Events</div>
-      <div class="value" style="color:var(--yellow)" id="statSync">—</div>
+      <div class="label">Lines Changed</div>
+      <div class="value" style="color:var(--blue)" id="statLines">—</div>
     </div>
     <div class="stat-card">
       <div class="label">Last Updated</div>
@@ -689,7 +731,7 @@
 
   <div id="syncSection" style="display:none">
     <div class="sync-section">
-      <div class="section-header"><h2> Synchronized Updates</h2></div>
+      <div class="section-header"><h2> Correlated Updates - Multiple models changed close together</h2></div>
       <div id="syncEvents"></div>
     </div>
   </div>
@@ -709,9 +751,9 @@
       </div>
     </div>
     <div class="chart-card full">
-      <h3>Top Terms Added &amp; Removed</h3>
-      <p>Most frequent words across all prompt changes</p>
-      <div class="terms-grid" id="topTerms"></div>
+      <h3>Model Activity Profiles</h3>
+      <p>Update cadence, change magnitude, and prompt complexity per model</p>
+      <div id="activityProfiles"></div>
     </div>
   </div>
 
@@ -731,14 +773,12 @@
 
 <script>
 const MODEL_META = {
-  claude:     { label: "Claude",      color: "#d97706", emoji: "🟠" },
-  openai:     { label: "ChatGPT",     color: "#10a37f", emoji: "🟢" },
-  gemini:     { label: "Gemini",      color: "#4285f4", emoji: "🔵" },
-  grok:       { label: "Grok",        color: "#9333ea", emoji: "🟣" },
-  perplexity: { label: "Perplexity",  color: "#20b2aa", emoji: "🩵" },
+  claude:  { label: "Claude",  color: "#d97706", emoji: "🟠" },
+  openai:  { label: "ChatGPT", color: "#10a37f", emoji: "🟢" },
+  gemini:  { label: "Gemini",  color: "#4285f4", emoji: "🔵" },
+  grok:    { label: "Grok",    color: "#9333ea", emoji: "🟣" },
 };
 
-const STOPWORDS = new Set(['the','a','an','and','or','but','in','on','at','to','for','of','with','by','from','as','is','was','are','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','this','that','these','those','it','its','you','your','we','our','they','their','i','my','he','she','his','her','not','no','if','then','when','what','which','who','how','all','any','each','more','also','can','use','new','used','using','based','add','added','remove','removed','include','including','please','always','never','only','just','like','make','made','get','set','now','into','up','out','about','than','so','such','there','after','before','while','where','both','between','here','user','users']);
 
 let data = null;
 
@@ -755,9 +795,12 @@ fetch("enriched_timeline.json")
 
 function init() {
   const total = Object.values(data.timelines).reduce((s, t) => s + t.length, 0);
+  const totalLines = Object.values(data.timelines).reduce((s, t) =>
+    s + t.reduce((a, e) => a + e.diff.total_change, 0), 0);
+
   document.getElementById("statModels").textContent = data.models.length;
   document.getElementById("statChanges").textContent = total;
-  document.getElementById("statSync").textContent = data.synchronized_events?.length || 0;
+  document.getElementById("statLines").textContent = totalLines.toLocaleString();
   document.getElementById("statDate").textContent = new Date(data.generated_at)
     .toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
@@ -778,7 +821,7 @@ function init() {
 
   buildComparisonChart();
   buildHeatmap();
-  buildTopTerms();
+  buildActivityProfiles();
 
   const tabsEl = document.getElementById("tabs");
   data.models.forEach((model, i) => {
@@ -874,35 +917,112 @@ function buildHeatmap() {
   container.appendChild(grid);
 }
 
-function buildTopTerms() {
-  const addedFreq = {}, removedFreq = {};
-  for (const timeline of Object.values(data.timelines)) {
-    for (const entry of timeline) {
-      for (const line of (entry.diff.added || [])) tokenize(line).forEach(w => { addedFreq[w] = (addedFreq[w] || 0) + 1; });
-      for (const line of (entry.diff.removed || [])) tokenize(line).forEach(w => { removedFreq[w] = (removedFreq[w] || 0) + 1; });
+function buildActivityProfiles() {
+  // Compute meaningful per-model stats
+  const allModels = data.models;
+
+  // Find global maxes for normalization
+  let maxChanges = 1, maxLines = 1, maxAvgSize = 1;
+  const stats = {};
+
+  for (const model of allModels) {
+    const timeline = data.timelines[model] || [];
+    const changes = timeline.length;
+    const totalLines = timeline.reduce((s, e) => s + e.diff.total_change, 0);
+    const avgSize = changes > 0 ? Math.round(totalLines / changes) : 0;
+
+    // Days since most recent change
+    let daysSince = null;
+    if (timeline.length > 0) {
+      const latest = new Date(timeline[0].date + "T00:00:00");
+      daysSince = Math.round((Date.now() - latest.getTime()) / 86400000);
     }
+
+    // Biggest single change
+    const biggestChange = timeline.reduce((m, e) => Math.max(m, e.diff.total_change), 0);
+
+    // Injection score from most recent scored entry
+    let injScore = null;
+    for (const e of timeline) {
+      if (e.injection_score != null) { injScore = e.injection_score; break; }
+    }
+
+    stats[model] = { changes, totalLines, avgSize, daysSince, biggestChange, injScore };
+    if (changes > maxChanges) maxChanges = changes;
+    if (totalLines > maxLines) maxLines = totalLines;
+    if (avgSize > maxAvgSize) maxAvgSize = avgSize;
   }
-  const topAdded = topN(addedFreq, 10), topRemoved = topN(removedFreq, 10);
-  const maxA = topAdded[0]?.[1] || 1, maxR = topRemoved[0]?.[1] || 1;
-  document.getElementById("topTerms").innerHTML = `
-    <div class="terms-col added">
-      <h4>+ Most Added</h4>
-      ${topAdded.map(([w, c]) => `
-        <div class="term-row">
-          <span class="term-name">${esc(w)}</span>
-          <div class="term-track"><div class="term-fill" style="width:${(c/maxA*100).toFixed(0)}%;background:var(--green)"></div></div>
-          <span class="term-count">${c}</span>
-        </div>`).join("")}
-    </div>
-    <div class="terms-col removed">
-      <h4>− Most Removed</h4>
-      ${topRemoved.map(([w, c]) => `
-        <div class="term-row">
-          <span class="term-name">${esc(w)}</span>
-          <div class="term-track"><div class="term-fill" style="width:${(c/maxR*100).toFixed(0)}%;background:var(--red)"></div></div>
-          <span class="term-count">${c}</span>
-        </div>`).join("")}
-    </div>`;
+
+  function activityStatus(daysSince, changes) {
+    if (changes === 0) return { label: "No data", color: "var(--muted)", bg: "rgba(86,96,112,0.15)" };
+    if (daysSince === null) return { label: "Unknown", color: "var(--muted)", bg: "rgba(86,96,112,0.15)" };
+    if (daysSince <= 14) return { label: "Active", color: "var(--green)", bg: "rgba(52,211,153,0.12)" };
+    if (daysSince <= 60) return { label: "Recent", color: "var(--yellow)", bg: "rgba(251,191,36,0.12)" };
+    return { label: "Quiet", color: "var(--muted)", bg: "rgba(86,96,112,0.12)" };
+  }
+
+  const container = document.getElementById("activityProfiles");
+  container.innerHTML = `<div class="profiles-grid">${allModels.map(model => {
+    const meta = MODEL_META[model] || { label: model, color: "#888", emoji: "◆" };
+    const s = stats[model];
+    const status = activityStatus(s.daysSince, s.changes);
+    const injHtml = s.injScore != null ? `
+      <div class="profile-row">
+        <span class="profile-row-label">injection resistance</span>
+        <span class="profile-row-value" style="color:${scoreColor(s.injScore)}">${s.injScore}%</span>
+      </div>
+      <div class="profile-bar-wrap">
+        <div class="profile-bar-fill" style="width:${s.injScore}%;background:${scoreColor(s.injScore)}"></div>
+      </div>` : '';
+
+    return `
+      <div class="profile-card" style="border-color:${meta.color}33">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${meta.color}"></div>
+        <div class="profile-model">
+          <span style="font-size:18px">${meta.emoji}</span>
+          <span class="profile-model-name">${meta.label}</span>
+          <span class="profile-status" style="background:${status.bg};color:${status.color};margin-left:auto">
+            ${status.label}
+          </span>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-row-label">total changes</span>
+          <span class="profile-row-value" style="color:${meta.color}">${s.changes}</span>
+        </div>
+        <div class="profile-bar-wrap">
+          <div class="profile-bar-fill" style="width:${(s.changes/maxChanges*100).toFixed(0)}%;background:${meta.color}"></div>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-row-label">total lines changed</span>
+          <span class="profile-row-value">${s.totalLines.toLocaleString()}</span>
+        </div>
+        <div class="profile-bar-wrap">
+          <div class="profile-bar-fill" style="width:${(s.totalLines/maxLines*100).toFixed(0)}%;background:${meta.color}88"></div>
+        </div>
+
+        <div class="profile-row">
+          <span class="profile-row-label">avg lines / change</span>
+          <span class="profile-row-value">${s.avgSize}</span>
+        </div>
+        <div class="profile-bar-wrap">
+          <div class="profile-bar-fill" style="width:${(s.avgSize/maxAvgSize*100).toFixed(0)}%;background:${meta.color}55"></div>
+        </div>
+
+        <div class="profile-row" style="margin-top:4px">
+          <span class="profile-row-label">biggest change</span>
+          <span class="profile-row-value">${s.biggestChange} lines</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">last seen</span>
+          <span class="profile-row-value" style="color:${status.color}">
+            ${s.daysSince === null ? '—' : s.daysSince === 0 ? 'today' : `${s.daysSince}d ago`}
+          </span>
+        </div>
+        ${injHtml}
+      </div>`;
+  }).join("")}</div>`;
 }
 
 function scoreColor(s) {
@@ -982,13 +1102,6 @@ function fmtDate(s) {
   return new Date(s + "T00:00:00").toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 }
 
-function tokenize(str) {
-  return str.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(w => w.length > 3 && !STOPWORDS.has(w));
-}
-
-function topN(freq, n) {
-  return Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, n);
-}
 
 function esc(s = "") {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
