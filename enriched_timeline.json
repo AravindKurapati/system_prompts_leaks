@@ -1,11 +1,10 @@
 {
-  "generated_at": "2026-03-11T09:41:41.410326",
+  "generated_at": "2026-03-12T04:08:15.871993",
   "models": [
     "claude",
     "openai",
     "gemini",
-    "grok",
-    "perplexity"
+    "grok"
   ],
   "timelines": {
     "claude": [
@@ -27,8 +26,8 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "This change updates the system to recognize lines starting with \"Claude:\" in addition to \"User:\" and \"Action:\". This means the system can now correctly identify and format responses from Claude, making it easier to distinguish between different types of messages.",
-        "injection_score": 52
+        "summary": "This change updates the system to recognize lines that start with \"Claude:\" in addition to \"User:\" and \"Action:\". The goal is to capture and handle these lines correctly, making the system more accurate and effective.",
+        "injection_score": 62
       },
       {
         "date": "2026-02-15",
@@ -104,7 +103,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change updates the styling of CLAUDE's system prompt, giving it a fresh new look that matches Anthropic's docs aesthetic. The update tweaks things like font sizes, colors, and spacing to make the interface more visually appealing and user-friendly. Overall, it's a cosmetic change that aims to improve the overall look and feel of the system prompt.",
+        "summary": "This change updated the design of CLAUDE's system prompt to match Anthropic's style, making it look more modern and consistent. The update affected things like font sizes, colors, and spacing, giving the prompt a fresh new look.",
         "injection_score": null
       },
       {
@@ -121,7 +120,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "Someone added a little icon (called a favicon) to CLAUDE's system prompt explorer, which will show up in the browser's tab. This icon is a small image that represents the site, and it's being loaded from a file called \"favicon.ico\".",
+        "summary": "This change added a small icon, called a favicon, to the CLAUDE system prompt explorer. The favicon is a tiny image that shows up in the browser's tab or bookmark, and it's now being loaded from a file called \"favicon.ico\". This update just gives the page a bit of visual flair, but doesn't change how anything works.",
         "injection_score": null
       }
     ],
@@ -143,8 +142,8 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "This change updated the example user's info in the GEMINI system. The old example used a specific person's name and email, but now it uses a more generic template with \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\". This probably makes the example more flexible and easier to use for different users.",
-        "injection_score": 52
+        "summary": "This change updated the example user info in GEMINI's system prompt, swapping out a specific name and email for a more generic one that uses \"GOOGLE_ACCOUNT_NAME\" and \"HANDLE@gmail.com\". This suggests that the system is being set up to use the actual user's Google account info, rather than a fixed example.",
+        "injection_score": 55
       }
     ],
     "grok": [
@@ -198,18 +197,17 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "GROK's system prompt got an update that changed how the \"web_search\" and \"x_keyword_search\" features work. The update seems to have mainly removed some unnecessary code, but didn't really change how these features function. Overall, the update is pretty minor and doesn't affect how you use these search tools.",
-        "injection_score": 55
+        "summary": "GROK updated its system to change how it handles web searches and advanced searches on a platform called X. The update didn't add any major new features, but it did reorganize how the search functions are defined. This change is mostly behind-the-scenes, so it shouldn't affect how you use the search tools.",
+        "injection_score": 59
       }
-    ],
-    "perplexity": []
+    ]
   },
   "synchronized_events": [
     {
       "date": "2026-02-15",
       "models_involved": [
-        "grok",
-        "claude"
+        "claude",
+        "grok"
       ],
       "model_count": 2,
       "description": "2 models updated within 7 days"
@@ -227,9 +225,6 @@
     },
     "grok": {
       "total_changes": 1
-    },
-    "perplexity": {
-      "total_changes": 0
     }
   }
 }
