@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T09:35:24.296398",
+  "generated_at": "2026-03-13T09:38:36.711369",
   "models": [
     "claude",
     "openai",
@@ -26,8 +26,8 @@
           "removed_count": 2,
           "total_change": 4
         },
-        "summary": "This change adds \"Claude\" as a recognized label in the system, so it can now correctly identify lines starting with \"Claude:\" in user action response cards. Before, it only looked for \"User:\" or \"Action:\", but now it includes \"Claude:\" in that check.",
-        "injection_score": 59
+        "summary": "This change updates the system to recognize when a line starts with \"Claude:\" (in addition to \"User:\" or \"Action:\"). It does this by tweaking a regular expression to include \"Claude\" as a possible match, making the system more aware of CLAUDE's presence in the text.",
+        "injection_score": 66
       },
       {
         "date": "2026-02-15",
@@ -103,7 +103,7 @@
           "removed_count": 1588,
           "total_change": 2465
         },
-        "summary": "This change updates the style and layout of CLAUDE's system prompt, giving it a fresher look with new fonts, colors, and spacing. The redesign aims to match the Anthropic docs aesthetic, making the interface more visually appealing and consistent. Overall, it's a visual refresh that doesn't change the functionality, just the way things look.",
+        "summary": "This change updated the styling of CLAUDE's system prompt, giving it a fresh new look that matches Anthropic's aesthetic. The update tweaked things like font sizes, colors, and spacing to make the interface more visually appealing and user-friendly. Overall, it's a cosmetic change that improves the overall look and feel of the system prompt.",
         "injection_score": null
       },
       {
@@ -120,7 +120,7 @@
           "removed_count": 0,
           "total_change": 1
         },
-        "summary": "This change added a small icon, called a favicon, to the CLAUDE System Prompt Explorer. The favicon is a tiny image that shows up in the browser's tab or bookmark, and in this case, it's being pulled from a file called \"favicon.ico\". This gives the page a more personalized look, but doesn't affect how it works.",
+        "summary": "This change just adds a tiny icon (called a favicon) to the website's tab in your browser, making it easier to spot. It doesn't change how the site works, just how it looks. The icon is stored in a file called \"favicon.ico\".",
         "injection_score": null
       }
     ],
@@ -142,8 +142,8 @@
           "removed_count": 1,
           "total_change": 2
         },
-        "summary": "Someone updated the system prompt to change the user's name and email address. Now, the user is referred to as \"GOOGLE_ACCOUNT_NAME\" with the email \"HANDLE@gmail.com\", instead of having a specific name and email like \"\u00c1sgeir Thor Johnson\" and \"asgeirtj@gmail.com\". This makes the prompt more generic and less personalized.",
-        "injection_score": 50
+        "summary": "Someone updated the system prompt to change the user's name and email address. Now, instead of saying the user's name is \u00c1sgeir Thor Johnson, it says their name is GOOGLE_ACCOUNT_NAME, and their email is HANDLE@gmail.com instead of asgeirtj@gmail.com. This change is likely to make the system more generic and flexible.",
+        "injection_score": 59
       }
     ],
     "grok": [
@@ -197,8 +197,8 @@
           "removed_count": 6,
           "total_change": 66
         },
-        "summary": "Summary unavailable.",
-        "injection_score": 50
+        "summary": "GROK's system prompt got an update that changed how it defines two search actions: \"web_search\" and \"x_keyword_search\". The \"web_search\" action now has a more detailed description, but its functionality remains the same. The \"x_keyword_search\" action remains unchanged, but its definition was reorganized in the update.",
+        "injection_score": 59
       }
     ]
   },
