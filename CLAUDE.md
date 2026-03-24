@@ -29,3 +29,14 @@ Pipeline: GitHub Actions -> extract_and_analyze.py -> enriched_timeline.json -> 
 ## Working style
 - Interview me in detail using AskUserQuestion about technical implementation, tradeoffs, and concerns before writing any code
 - Never assume which file to edit if multiple candidates exist.
+
+## Bug Rule
+When a bug is reported, do NOT fix it immediately. First write a test that reproduces 
+the wrong behavior. Then fix it. Then prove the fix with a passing test.
+
+## Scoring Pipeline Rule  
+Before changing score_injection_resistance(), document expected behavior per model 
+in SPEC_scoring.md. Score changes require a before/after comparison.
+
+## Branch Rule
+Never commit directly to main. Always work on the current branch.
