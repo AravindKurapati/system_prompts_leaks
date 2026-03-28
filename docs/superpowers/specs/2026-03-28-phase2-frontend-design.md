@@ -1,4 +1,4 @@
-# Phase 2 Frontend Design — AI Prompt Watch
+# Phase 2 Frontend Design - AI Prompt Watch
 
 Date: 2026-03-28
 Branch: cc/phase2-frontend
@@ -23,7 +23,7 @@ Single page. Tab bar at top with **Overview first**, then one tab per model.
 ```
 
 - **Overview tab**: all analytics charts + concept composition bars
-- **Model tabs**: tag filter bar + timeline of entry cards — no charts
+- **Model tabs**: tag filter bar + timeline of entry cards - no charts
 
 ---
 
@@ -87,10 +87,10 @@ App
 ### FilterBar
 - One checkbox pill per tag (all 8 tags)
 - Default: all selected (show everything)
-- Show an entry if its behavioral_tags intersects the active filter set (entry needs at least one checked tag — OR/union logic)
+- Show an entry if its behavioral_tags intersects the active filter set (entry needs at least one checked tag - OR/union logic)
 - Visually: row of colored pill checkboxes above the timeline, matching tag colors
 
-### EntryCard — stacked rows layout (A)
+### EntryCard - stacked rows layout (A)
 ```
 Row 1: [date]  ·  [commit hash]  ·  [commit message]          [+N  −N]
 Row 2: [summary text]
@@ -119,35 +119,36 @@ Row 4: [▶ diff]  [⊞ full prompt]
 - Uses `react-diff-viewer-continued` in split view, dark theme
 - `oldValue`: removed lines joined with `\n`
 - `newValue`: added lines joined with `\n`
-- Note: partial diff (up to 30 lines each side), not full-document diff — this is a known limitation
 - Collapsed by default; toggled by "▶ diff" button on EntryCard
+- Show a visible label below the diff: "showing first 30 changed lines" — do not hide the pipeline limitation
 
-### FullPromptViewer (drawer — layout B)
+### FullPromptViewer (drawer - layout B)
 - Rendered once at App level, controlled via shared state: `{ open: bool, entry: object | null }`
 - Slides in from the right, ~45% viewport width
 - Header: model name + date + commit hash, Copy button, ✕ close
-- Body: scrollable `content_snapshot` text, IBM Plex Mono, `#8b949e` color
+- Body: scrollable `content_snapshot` text, IBM Plex Mono, `#e6edf3` color (primary text — this is a reading surface, not metadata)
 - Timeline remains visible and scrollable on the left while drawer is open
 
 ### Charts (Overview tab)
 
-**ChangesBarChart** — recharts BarChart
+**ChangesBarChart** - recharts BarChart
 - X: model name, Y: total_changes from stats
 - Bar color per model from MODEL_META
 
-**PromptLengthChart** — recharts LineChart
+**PromptLengthChart** - recharts LineChart
 - X: date, Y: prompt_length
 - One line per model, color from MODEL_META
 - Only models with >1 data point render a line
 
-**HeatmapChart** — CSS grid (no recharts)
+**HeatmapChart** - CSS grid (no recharts)
 - Rows: models, Columns: months (derived from timeline dates)
 - Cell color: green intensity scaled to change count that month
 - Simple `#0d1117` → `#3fb950` scale, 5 steps
 
-**ConceptDriftBar** — recharts BarChart (layout="vertical", stacked)
+**ConceptDriftBar** - recharts BarChart (layout="vertical", stacked)
 - One row per model
-- Stacked segments = proportion of changes tagged with each behavioral tag
+- Stacked segments = proportion of entries with each tag (count of entries with tag ÷ total entries for model)
+- Entries can carry multiple tags, so segments sum to >100% — do not label the axis as "%" without a footnote: "tags are not mutually exclusive — proportions may sum above 100%"
 - Shows "Claude spends X% of changes on safety, Grok on tool_definition" at a glance
 
 ---
@@ -172,9 +173,9 @@ const MODEL_META = {
 - Border: `#21262d`
 - Text primary: `#e6edf3`
 - Text muted: `#8b949e`
-- Fonts: Syne (headings/display), IBM Plex Mono (data/code/body)
+- Fonts: Syne (headings, tab labels, stat numbers), IBM Plex Mono (commit hashes, dates, diff content, code, prompt viewer body), system sans-serif (summary text, labels, descriptions)
 - No animations except subtle hover state transitions (100ms)
-- Dense layout — this is a developer tool, not a marketing page
+- Dense layout - this is a developer tool, not a marketing page
 
 ---
 
@@ -183,8 +184,8 @@ const MODEL_META = {
 - Vite base path: `/system_prompts_leaks/`
 - GitHub Pages served from `gh-pages` branch
 - Actions workflow: two jobs
-  1. **pipeline** — runs `extract_and_analyze.py`, commits `enriched_timeline.json` to main
-  2. **deploy** (needs: pipeline) — copies JSON to `frontend/public/`, builds Vite, force-pushes `dist/` to gh-pages via `peaceiris/actions-gh-pages`
+  1. **pipeline** - runs `extract_and_analyze.py`, commits `enriched_timeline.json` to main
+  2. **deploy** (needs: pipeline) - copies JSON to `frontend/public/`, builds Vite, force-pushes `dist/` to gh-pages via `peaceiris/actions-gh-pages`
 
 ---
 
