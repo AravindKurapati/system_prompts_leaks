@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 2026-03-28 — Phase 1 pipeline changes (branch: cc/phase1-pipeline)
+
+### extract_and_analyze.py
+- **Added `strip_html()`** helper — strips HTML tags and collapses whitespace; used by snapshot and prompt_length
+- **Added `tag_diff()`** — rule-based behavioral tagger; classifies each diff into one or more of: `tool_definition`, `safety`, `persona`, `capability`, `formatting`, `memory`, `policy`, `other`
+- **New fields on every timeline entry**: `behavioral_tags`, `content_raw` (raw file bytes), `content_snapshot` (HTML-stripped text), `prompt_length` (character count of stripped text)
+- **Removed injection scoring** — deleted `score_injection_resistance()`, `INJECTION_ATTACKS`, `REFUSAL_SIGNALS`, `COMPLIANCE_SIGNALS`, `_RESISTANCE_BONUS_PHRASES`, `_apply_resistance_bonus()`; was scoring Llama simulating the model, not the model itself (see archive/SPEC_scoring.md)
+- **Removed `find_synchronized_events()`** — feature was not displayed; dead pipeline cost removed
+- **Removed `synchronized_events` from output schema** — no longer generated
+
+### archive/SPEC_scoring.md
+- Moved from root; annotated with removal rationale
+
+### test_pipeline.py
+- Replaced injection-scoring tests (now deleted feature) with 24 tests covering `strip_html`, `tag_diff`, and new `build_timeline` fields
+
 ## 2026-03-23 — Injection scorer improvements + HTML legend (branch: fix-injection-scorer)
 
 ### extract_and_analyze.py
