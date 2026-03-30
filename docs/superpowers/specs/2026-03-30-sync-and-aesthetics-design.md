@@ -77,7 +77,7 @@ Durations are intentionally non-harmonious (31/43/57 share no common factor) so 
 A non-animating `radial-gradient` on `body`:
 
 ```css
-background: radial-gradient(ellipse at 50% 0%, rgba(88,166,255,0.03) 0%, transparent 60%), #0d1117;
+background: radial-gradient(ellipse at 50% 0%, rgba(88,166,255,0.05) 0%, transparent 60%), #0d1117;
 ```
 
 Gives the page a subtle cool atmosphere from the top edge.
